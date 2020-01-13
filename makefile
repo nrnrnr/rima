@@ -19,7 +19,7 @@ COIN_LIBDIR=$(COIN_PREFIX)/lib
 COIN_INCDIR=$(COIN_PREFIX)/include/coin
 
 LPSOLVE_PREFIX=/usr
-LPSOLVE_LIBDIR=$(LPSOLVE_PREFIX)/lib
+LPSOLVE_LIBDIR=$(LPSOLVE_PREFIX)/lib/lpsolve
 LPSOLVE_INCDIR=$(LPSOLVE_PREFIX)/include/lpsolve
 
 CPP=/usr/bin/g++
@@ -64,7 +64,7 @@ lua/rima_cbc_core.$(SO_SUFFIX): c/rima_cbc_core.cpp c/rima_solver_tools.cpp
 	   $(LIBS) -I$(LUA_INCDIR) -I$(COIN_INCDIR)
 
 lua/rima_lpsolve_core.$(SO_SUFFIX): c/rima_lpsolve_core.cpp c/rima_solver_tools.cpp
-	$(CPP) $(CFLAGS) $(SHARED) $^ -o $@ -L$(LPSOLVE_LIBDIR) -llpsolve55 $(LIBS) -I$(LUA_INCDIR) -I$(LPSOLVE_INCDIR)
+	$(CPP) $(CFLAGS) $(SHARED) $^ -o $@ -L$(LPSOLVE_LIBDIR) -llpsolve55_pic $(LIBS) -I$(LUA_INCDIR) -I$(LPSOLVE_INCDIR)
 
 lua/rima_ipopt_core.$(SO_SUFFIX): c/rima_ipopt_core.cpp
 	$(CPP) $(CFLAGS) $(SHARED) $^ -o $@ -L$(COIN_LIBDIR) -lipopt -lcoinmumps -lcoinmetis -lgfortran $(LIBS) -I$(LUA_INCDIR) -I$(COIN_INCDIR)
